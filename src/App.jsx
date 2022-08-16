@@ -1,12 +1,11 @@
-import React from "react";
-import List from "./components/List";
+import React, { useState } from "react";
+import Input from "./components/Input";
 
 function App() {
-  const handleClick = (event) => {
-    // 👇️ refers to the image element
-    console.log(event.target);
-    // this is where to indicate what you want the function to do
-    console.log("Image clicked");
+  const [input, setInput] = useState("");
+
+  const handleClick = () => {
+    console.log("button clicked");
   };
 
   return (
@@ -20,7 +19,7 @@ function App() {
           Add a Todo
           <img src="/images/add.png " alt="add" onClick={handleClick} />
         </li>
-        <List />
+        <Input />
       </div>
     </div>
   );

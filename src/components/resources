@@ -1,0 +1,101 @@
+showLists?  <li className="todo-items">
+    <input type="checkbox" />
+       <input type="text"></input>
+
+        <img className="delete-img" src="/images/delete.png " alt="delete" />
+        <img src="/images/add.png " alt="add" />
+      </li>  :
+
+       <input
+    className="todo-input"
+    type="text"
+    ref={getInputValue}
+    onChange={handleChange}
+    placeholder="Enter Your Task"
+  ></input>;
+
+  <div>
+        <form>
+          <input
+            className="todo-input"
+            type="text"
+            ref={getInputValue}
+            onChange={handleChange}
+            placeholder="Enter Your Task"
+          ></input>
+        </form>
+
+        <button
+          onClick={handleClick}
+          className="button"
+          type="submit"
+          setShowLists="false"
+        >
+          +
+        </button>
+      </div>
+
+      <div>{todoList ? <listTodo /> : <inputTodo />}</div>
+
+       function listTodo(props) {
+    return (
+      <div>
+        <ul>
+          <li className="todo-items">
+            <input type="checkbox" />
+            <img
+              className="delete-img"
+              src="/images/delete.png "
+              alt="delete"
+            />
+            <img src="/images/add.png " alt="add" />
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
+  function inputTodo() {
+    return (
+      <div>
+        <div>
+          <form>
+            <input
+              className="todo-input"
+              type="text"
+              ref={getInputValue}
+              onChange={handleChange}
+              placeholder="Enter Your Task"
+            ></input>
+          </form>
+
+          <button
+            onClick={handleClick}
+            className="button"
+            type="submit"
+            setShowLists="false"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    );
+  }
+  function todoItems(props) {
+    const todoList = props.todoList;
+    if (todoList) {
+      return <listTodo />;
+    }
+    return <inputTodo />;
+  }
+ const handleChange = (event) => {
+    addTodo(event.target.value);
+  };
+
+  // console.log("value is:", event.target.value);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+
+    // console.log("button pressed");
+    // console.log(getInputValue.current.value);
