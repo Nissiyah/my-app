@@ -1,22 +1,22 @@
 import React from "react";
-import ListItem from "./ListItem";
 
-function Input() {
+const Input = ({ onChange, value, onSubmit }) => {
   return (
     <div>
       <form>
         <input
+          onChange={onChange}
+          value={value}
           className="todo-input"
           type="text"
           placeholder="Enter Your Task"
         ></input>
       </form>
 
-      <button onClick className="button" type="submit">
+      <button onClick={onSubmit} className="button" type="submit">
         +
       </button>
-      <ListItem />
     </div>
   );
-}
+};
 export default Input;
