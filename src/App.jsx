@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Input from "./components/Input";
 import Lists from "./components/Lists";
+import { useRef } from "react";
 
 const App = () => {
   // States to handle the input and the list of todos
-  const [todos, setTodos] = useState(["Hey", "Okay", "Hello", "Bye"]);
+  const [todos, setTodos] = useState([]);
   const [currentInput, setCurrentInput] = useState("");
 
   // Boolean to determine when the input field shows
@@ -21,6 +22,14 @@ const App = () => {
     setCurrentInput(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(currentInput);
+    setTodos([...todos, currentInput]);
+    setCurrentInput("");
+    setDisplay(false);
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -34,7 +43,13 @@ const App = () => {
         </li>
 
         {/* Conditionally render Input based on the `display` state created above */}
-        {display && <Input onChange={handleChange} value={currentInput} />}
+        {display && (
+          <Input
+            onChange={handleChange}
+            value={currentInput}
+            onSubmit={handleSubmit}
+          />
+        )}
 
         {/* Render all todos */}
         <Lists items={todos} />

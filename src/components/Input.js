@@ -11,11 +11,10 @@ const Input = ({ onChange, value, onSubmit }) => {
           type="text"
           placeholder="Enter Your Task"
         ></input>
+        <button className="button" onClick={onSubmit}>
+          +
+        </button>
       </form>
-
-      <button onClick={onSubmit} className="button" type="submit">
-        +
-      </button>
     </div>
   );
 };
