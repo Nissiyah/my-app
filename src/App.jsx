@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "./components/Input";
+
 import Lists from "./components/Lists";
-import { useRef } from "react";
 
 const App = () => {
   // States to handle the input and the list of todos
@@ -30,6 +30,13 @@ const App = () => {
     setDisplay(false);
   };
 
+  const handleDeleteClick = (e, key) => {
+    e.preventDefault();
+    console.log("key index:", key);
+
+    console.log("deleted");
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -52,7 +59,7 @@ const App = () => {
         )}
 
         {/* Render all todos */}
-        <Lists items={todos} />
+        <Lists items={todos} onDelete={(e, key) => handleDeleteClick(e, key)} />
       </div>
     </div>
   );
