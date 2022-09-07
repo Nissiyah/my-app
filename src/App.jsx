@@ -32,9 +32,11 @@ const App = () => {
 
   const handleDeleteClick = (e, key) => {
     e.preventDefault();
-    console.log("key index:", key);
+    const newArray = todos.filter((_, index) => index !== key);
+    setTodos(newArray);
+    console.log(newArray);
 
-    console.log("deleted");
+    console.log("key index:", key);
   };
 
   return (
