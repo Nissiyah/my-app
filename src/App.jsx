@@ -5,7 +5,7 @@ import Lists from "./components/Lists";
 
 const App = () => {
   // States to handle the input and the list of todos
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([]); // Array of object {id:0, todo:"", completed:false}
   const [currentInput, setCurrentInput] = useState("");
 
   // Boolean to determine when the input field shows
@@ -25,7 +25,8 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(currentInput);
-    setTodos([...todos, currentInput]);
+    const data = { id: todos.length, todo: currentInput, completed: true };
+    setTodos([...todos, data]);
     setCurrentInput("");
     setDisplay(false);
   };
@@ -37,6 +38,13 @@ const App = () => {
     console.log(newArray);
 
     console.log("key index:", key);
+  };
+
+  const handleCheckChange = (e, key) => {
+    const newArray = [...todos];
+    let item = newArray[key];
+    newArray[key] = { ...item, completed: e.target.checked };
+    setTodos(newArray);
   };
 
   return (
@@ -61,7 +69,11 @@ const App = () => {
         )}
 
         {/* Render all todos */}
-        <Lists items={todos} onDelete={(e, key) => handleDeleteClick(e, key)} />
+        <Lists
+          items={todos}
+          onDelete={(e, key) => handleDeleteClick(e, key)}
+          onCompleteChange={(e, key) => handleCheckChange(e, key)}
+        />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import LastTodo from "./LastTodo";
 import ListItem from "./ListItem";
 
-const Lists = ({ items, onDelete }) => {
+const Lists = ({ items, onDelete, onCompleteChange }) => {
   return (
     <div style={{ marginTop: "100px" }}>
       <ul>
@@ -12,6 +12,7 @@ const Lists = ({ items, onDelete }) => {
             todo={item}
             key={index}
             onDelete={(e) => onDelete(e, index)}
+            onCompleteChange={(e) => onCompleteChange(e, index)}
           />
         ))}
       </ul>

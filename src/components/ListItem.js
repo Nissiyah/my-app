@@ -1,9 +1,13 @@
 import React from "react";
 
-const ListItem = ({ todo, onDelete }) => {
+const ListItem = ({ todo, onDelete, onCompleteChange }) => {
   return (
     <li className="todo-items">
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={onCompleteChange}
+      />
       <img
         className="delete-img"
         src="/images/delete.png "
@@ -11,7 +15,9 @@ const ListItem = ({ todo, onDelete }) => {
         onClick={onDelete}
       />
       <img src="/images/add.png " alt="add" />
-      <span>{todo}</span>
+      <span style={{ textDecoration: todo.completed && "line-through" }}>
+        {todo.todo}
+      </span>
     </li>
   );
 };
